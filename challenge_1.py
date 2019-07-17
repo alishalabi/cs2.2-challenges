@@ -18,8 +18,10 @@ class Vertex(object):
 
     def add_neighbor(self, vertex, weight=1):
         """Add a neighbor along a weighted edge."""
-        # TODO check if vertex is already a neighbor
-        # TODO if not, add vertex to neighbors and assign weight.
+        # check if vertex is already a neighbor
+        if vertex not in self.neighbors:
+            # if not, add vertex to neighbors and assign weight.
+            self.neighbors[vertex] = weight
 
     def __str__(self):
         """Output the list of neighbors of this vertex."""
@@ -27,7 +29,8 @@ class Vertex(object):
 
     def get_neighbors(self):
         """Return the neighbors of this vertex."""
-        # TODO return the neighbors
+        # return the neighbors
+        return self.neighbors.items()
 
     def get_id(self):
         """Return the id of this vertex."""
@@ -35,8 +38,10 @@ class Vertex(object):
 
     def get_edge_weight(self, vertex):
         """Return the weight of this edge."""
-        # TODO return the weight of the edge from this
+        # return the weight of the edge from this
         # vertex to the given vertex.
+        vertex_weight = self.neighbors[vertex]
+        return vertex_weight
 
 
 class Graph:
@@ -52,14 +57,23 @@ class Graph:
     def add_vertex(self, key):
         """Add a new vertex object to the graph with the given key and return
         the vertex."""
-        # TODO increment the number of vertices
-        # TODO create a new vertex
-        # TODO add the new vertex to the vertex list
-        # TODO return the new vertex
+        if key not in self.vert_list:
+            # increment the number of vertices
+            self.num_vertices += 1
+            # create a new vertex
+            # add the new vertex to the vertex list
+            self.vert_list[key] = Vertex(key)
+            # add the new vertex to the vertex list
+            # return the new vertex
+        return self.vert_list[key]
 
     def get_vertex(self, key):
         """Return the vertex if it exists"""
-        # TODO return the vertex if it is in the graph
+        # return the vertex if it is in the graph
+        if key not in self.vert_list:
+            return None
+        else:
+            return self.vert_list[key]
 
     def add_edge(self, key1, key2, weight=1):
         """Add an edge from vertex with key `key1` to vertex with key `key2`
