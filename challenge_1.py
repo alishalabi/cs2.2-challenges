@@ -80,11 +80,16 @@ class Graph:
         with a weight."""
         # TODO if either vertex is not in the graph,
         # add it - or return an error (choice is up to you).
-        # TODO if both vertices in the graph, add the
+        if key1 not in self.vert_list:
+            self.add_vertex(key1)
+        if key2 not in self.vert_list:
+            self.add_vertex(key2)
+        # if both vertices in the graph, add the
         # edge by making key1 a neighbor of key2
         # and using the add_neighbor method of the Vertex class.
         # Hint: the vertex corresponding to key1 is stored in
         # self.vert_list[key1].
+        self.vertices[key1].add_neighbor(self.vertices[key2], weight)
 
     def get_vertices(self):
         """Return all the vertices in the graph"""
